@@ -111,7 +111,7 @@ DELIMITER ;
 为了测试插入和更新所需要的时间，我们批量插入10万条数据试了下，我采用存储过程插入10万条：
 
 ```
-delimiter ;;
+DELIMITER  $$
 create procedure myproc (IN num Int)
 
 begin
@@ -125,7 +125,9 @@ set num = num + 1 ;
 end
 while ;
 
-end;;
+end;
+$$
+DELIMITER ;
 ```
 
 写好存储过程后，用命令调用：
