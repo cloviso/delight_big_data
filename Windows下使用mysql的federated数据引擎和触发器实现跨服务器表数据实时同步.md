@@ -112,7 +112,7 @@ DELIMITER ;
 
 ```
 DELIMITER  $$
-create procedure myproc (IN num Int)
+create procedure myproc ()
 
 begin
 declare @num int ;
@@ -242,3 +242,17 @@ MySQL实时性比较高的数据同步解决方案：
 6、Event Scheduler ：用kettle设置定时任务job。
 
 目前1、5、6已经测试过了 理论上可以实现。
+
+采用kettle工具全量插入1万条数据同步要花费时间 18.1s：(内存放的快照量是1000条)
+
+```
+2018/04/19 16:28:50 - Spoon - Using legacy execution engine
+2018/04/19 16:28:50 - Spoon - 转换已经打开.
+2018/04/19 16:28:50 - Spoon - 正在打开转换 [test_pc_tri_insert]...
+2018/04/19 16:28:50 - Spoon - 开始执行转换.
+2018/04/19 16:28:50 - test_pc_tri_insert - 为了转换解除补丁开始  [test_pc_tri_insert]
+2018/04/19 16:28:51 - 本地数据库test-students 输入.0 - Finished reading query, closing connection.
+2018/04/19 16:28:51 - 本地数据库test-students 输入.0 - 完成处理 (I=10001, O=0, R=0, W=10001, U=0, E=0)
+2018/04/19 16:29:08 - 插入 / 更新 全量 同步到18 test.0 - 完成处理 (I=10001, O=10001, R=10001, W=10001, U=0, E=0)
+2018/04/19 16:29:08 - Spoon - 转换完成!!
+```
